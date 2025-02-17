@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ()
+{
+    float nota1, nota2, media; //declaramos as variaveis como numeros reais usando float
+
+    printf("\n\Digite a primeira nota: "); //perguntamos na tela do usuario e informamos o a digitar a nota1. \n\ é para criar uma nova linha
+    scanf("%f", &nota1); //abrimos um valor na nossa memoria para declarar o valor informado como nota1
+
+    printf("\n\Digite a segunda nota: "); //mesma coisa, porem com a nota 2
+    scanf("%f", &nota2); //tambem
+
+    media = (nota1+nota2)/2; //aqui eh o calculo entre as notas para gerarmos a media
+
+    printf ("\n\tA media entre %f e %f =%f", nota1, nota2, media); //colocamos a media na tela, perceba que eh nessa logica que escrevemos nota 1, 2 e a media, em ordem.
+    printf ("\n\n"); //criamos 1 linha vazia para organização.
+    system("pause"); //pausamos para que o programa nao pisque com o .exe
+
+
+
+
+    return (0);
+}
