@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main () {
+    float numero1, antecessor, sucessor;
+
+
+ printf ("\n\ informe o numero: ");
+
+ scanf ("%f",&numero1);
+
+ antecessor = numero1 - 1;
+ sucessor = numero1 + 1;
+
+ printf ("\n\ O antecessor eh %f e o sucessor eh %f", antecessor, sucessor);
+return (0);
+system ("pause");
+}
