@@ -8,14 +8,14 @@ int main () {
     float numero1, antecessor, sucessor;
 
 
- printf ("\n\ informe o numero: ");
+ printf ("\n\t informe o numero: ");
 
  scanf ("%f",&numero1);
 
  antecessor = numero1 - 1;
  sucessor = numero1 + 1;
 
- printf ("\n\ O antecessor eh %f e o sucessor eh %f\n\n", antecessor, sucessor);
+ printf ("\n\t O antecessor eh %f e o sucessor eh %f\n\n", antecessor, sucessor);
 
 system ("pause");
 }
