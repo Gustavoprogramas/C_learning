@@ -27,11 +27,11 @@ esse foi feito pela lucia:
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
+#include <locale.h> //biblioteca de idiomas
 
 int main () {
-    setlocale(LC_ALL,"portuguese");
-    int num, suc, ant;
+    setlocale(LC_ALL,"portuguese"); //settar idioma para portugues
+    int num, suc, ant; //aqui ela usou valores inteiros, e nao reais (float)
     printf ("\n\t Digite um valor inteiro ");
     scanf ("%d", &num);
     suc= num+1;
@@ -39,7 +39,7 @@ int main () {
 
     printf ("\n\t O antecessor de %d é %d",num,ant);
 
-    printf ("\n\t O sucessor de %d é %d\n\n",num,suc);
+    printf ("\n\t O sucessor de %d é %d\n\n",num,suc); //ela usou 2 linhas de comando para declarar os valores.
 
     system ("pause");
 
