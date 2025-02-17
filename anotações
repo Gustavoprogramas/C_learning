@@ -1,5 +1,8 @@
 #include <stdlib.h> 
 #include <stdio.h> //linguagens mais usadas do C.
-float //pegar
+valores reais: float %f
+valores inteiros: int %d
+caracteres: %c
 int main () //programa principar
 printf // escrver na tela
+scanf ("%d", & nota) // oque o usuario escrever será definido como a variavel nota.
