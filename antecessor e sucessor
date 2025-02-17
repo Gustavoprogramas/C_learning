@@ -15,7 +15,7 @@ int main () {
  antecessor = numero1 - 1;
  sucessor = numero1 + 1;
 
- printf ("\n\ O antecessor eh %f e o sucessor eh %f", antecessor, sucessor);
+ printf ("\n\ O antecessor eh %f e o sucessor eh %f\n\n", antecessor, sucessor);
 
 system ("pause");
 }
