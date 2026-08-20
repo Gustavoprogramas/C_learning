@@ -137,6 +137,23 @@ void somarcoisas (Lista *L){
 
 
 }
+void liberarlistas(Lista *Primeira, Lista *Segunda){
+    No* atual = Primeira->inicio;
+    while (atual!=NULL){
+        No *prox = atual->prox;
+        free(atual);
+        atual = prox;
+    }
+        Primeira->inicio = NULL;
+        No* atual2 = Segunda->inicio;
+    while (atual2!=NULL){
+        No *prox = atual2->prox;
+        free(atual2);
+        atual2 = prox;
+    }
+    Segunda->inicio = NULL;
+
+}
 
 
 
@@ -262,9 +279,12 @@ int main () {
             printf("\nPode nao man.");
         }
         break;
+    case 8:
+        liberarlistas(minhalista, outralista);
+        break;
     default:
 
-            printf("\nINVALIDO\n\n\n\n");
+    printf("\nINVALIDO\n\n\n\n");
 
     }
     }
