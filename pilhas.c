@@ -48,7 +48,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
                      );
       CreateWindow(
-                   "BUTTON", "Remover primeiro da pilha",
+                   "BUTTON", "Remover 1 da pilha",
                    WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
                    300, 200, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_REM, NULL, NULL
@@ -57,26 +57,26 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       CreateWindow(
                    "BUTTON", "Remover valor",
                    WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-                   340, 200, 150, 40,
+                   300, 260, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_REMV, NULL, NULL
                    );
        CreateWindow(
                     "EDIT", "",
                     WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-                    190, 140, 150, 40,
+                    150, 260, 150, 40,
                     hwnd, (HMENU)ID_CX_TXT, NULL, NULL
 
                      );
       CreateWindow(
                    "BUTTON", "Contar tamanho da pilha",
                    WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-                   380, 200, 150, 40,
+                   300, 320, 190, 40,
                    hwnd, (HMENU)ID_BOTAO_CNT, NULL, NULL
                    );
       CreateWindow(
                    "BUTTON", "Inverter Pilha",
                    WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
-                   400, 200, 150, 40,
+                   300, 380, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_INV, NULL, NULL
                    );
       break;
@@ -109,7 +109,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             GetDlgItemText(hwnd, ID_CX_TXT, naosei, sizeof(naosei));
             if (naosei[0] != '\0'){
                 int valor = atoi(naosei);
-                Removervalor(&minhaPilha, valor);
+                remv(&minhaPilha, valor);
             } else {
                 MessageBox(hwnd, "Digitar um numero na caixa branca ao lado do botao", "Aviso", MB_OK | MB_ICONWARNING);
             }
