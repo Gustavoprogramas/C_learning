@@ -13,6 +13,7 @@
 #define ID_CX_RMV 1009
 
 Pilha minhaPilha;
+Pilha Invertida;
 const char g_szClassName[] = "Pilhas";
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -23,19 +24,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         CriaPilha();
         CreateWindow(
                      "BUTTON", "Imprimir Pilha",
-                     WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                     WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                      300, 20, 150, 40, // X, Y, L, H
                      hwnd, (HMENU)ID_BOTAO_IMP, NULL, NULL
                      );
         CreateWindow(
                      "BUTTON", "Liberar Pilha",
-                     WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                     WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                      300, 80, 150, 40,
                      hwnd, (HMENU)ID_BOTAO_LIB, NULL, NULL
                       );
        CreateWindow(
                     "BUTTON", "Adicionar valor",
-                     WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                     WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                      300, 140, 150, 40,
                      hwnd, (HMENU)ID_BOTAO_ADC, NULL, NULL
 
@@ -49,14 +50,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                      );
       CreateWindow(
                    "BUTTON", "Remover 1 da pilha",
-                   WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                   WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                    300, 200, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_REM, NULL, NULL
 
                    );
       CreateWindow(
                    "BUTTON", "Remover valor",
-                   WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                   WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                    300, 260, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_REMV, NULL, NULL
                    );
@@ -69,57 +70,102 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                      );
       CreateWindow(
                    "BUTTON", "Contar tamanho da pilha",
-                   WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                   WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                    300, 320, 190, 40,
                    hwnd, (HMENU)ID_BOTAO_CNT, NULL, NULL
                    );
       CreateWindow(
                    "BUTTON", "Inverter Pilha",
-                   WS_VISIBLE | WS_CHILD | BS_PUSHBUTTON,
+                   WS_VISIBLE | WS_CHILD | BS_OWNERDRAW,
                    300, 380, 150, 40,
                    hwnd, (HMENU)ID_BOTAO_INV, NULL, NULL
                    );
       break;
+case WM_DRAWITEM: {
+        LPDRAWITEMSTRUCT item = (LPDRAWITEMSTRUCT)lParam;
+        
+        if (item->CtlType == ODT_BUTTON) {
+            HDC hdc = item->hDC;
+            RECT rc = item->rcItem;
+            HBRUSH brush;
+            
+            
+            if (item->itemState & ODS_SELECTED) {
+                brush = CreateSolidBrush(RGB(0, 51, 102)); 
+                
+               
+                rc.top += 2;
+                rc.left += 2; 
+            } else {
+                brush = CreateSolidBrush(RGB(0, 76, 153)); 
+            }
+            
+            SelectObject(hdc, brush);
+            RoundRect(hdc, rc.left, rc.top, rc.right, rc.bottom, 25, 25);
+            
+           
+            SetBkMode(hdc, TRANSPARENT); 
+            SetTextColor(hdc, RGB(128, 128, 128));
+            
+            char textoBotao[50];
+            GetWindowText(item->hwndItem, textoBotao, sizeof(textoBotao));
+            DrawText(hdc, textoBotao, -1, &rc, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+            
+            DeleteObject(brush);
+            return TRUE; 
+        }
+        break;
+    }
     case WM_COMMAND:
         switch(LOWORD(wParam)) {
         case ID_BOTAO_IMP:
             imprime(&minhaPilha);
             break;
-        case ID_BOTAO_ADC:
+        case ID_BOTAO_ADC: {
             char buffer[256];
             GetDlgItemText(hwnd, ID_CX_TXT, buffer, sizeof(buffer));
             if (buffer[0] != '\0'){
                 int valor = atoi(buffer);
                 push(&minhaPilha, valor);
+                SetDlgItemText(hwnd, ID_CX_TXT, "");
             } else {
                 MessageBox(hwnd, "Digitar um numero na caixa branca ao lado do botao", "Aviso", MB_OK | MB_ICONWARNING);
             }
         break;
+        }
+
         case ID_BOTAO_LIB:
             liberaPilha(&minhaPilha);
         break;
-        case ID_BOTAO_REM:
-            int valor;
+        case ID_BOTAO_REM: {
+          int valor;
             valor = pop(&minhaPilha);
             system("cls");
             printf("\nValor removido: %d", valor);
-        break;
-        case ID_BOTAO_REMV:
+        break;  
+        }
+            
+        case ID_BOTAO_REMV: {
             char naosei[256];
             GetDlgItemText(hwnd, ID_CX_RMV, naosei, sizeof(naosei));
             if (naosei[0] != '\0'){
                 int valor = atoi(naosei);
                 remv(&minhaPilha, valor);
+                SetDlgItemText(hwnd, ID_CX_RMV, "");
             } else {
                 MessageBox(hwnd, "Digitar um numero na caixa branca ao lado do botao", "Aviso", MB_OK | MB_ICONWARNING);
             }
         break;
-        case ID_BOTAO_CNT:
+        }
+            
+        case ID_BOTAO_CNT: {
             system("cls");
             int contagem;
             contagem = contarelementos(&minhaPilha);
             printf("\n %d", contagem);
         break;
+        }
+            
         case ID_BOTAO_INV:
             inverterpilha(&minhaPilha);
         break;
@@ -197,3 +243,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     return Msg.wParam;
 }
 
+//gcc -Wall -Wextra -g3 pilhas.c -o pilhas.exe -lgdi32
