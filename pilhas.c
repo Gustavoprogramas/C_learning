@@ -13,7 +13,6 @@
 #define ID_CX_RMV 1009
 
 Pilha minhaPilha;
-Pilha Invertida;
 const char g_szClassName[] = "Pilhas";
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
