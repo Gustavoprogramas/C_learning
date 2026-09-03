@@ -10,6 +10,7 @@
 #define ID_BOTAO_REMV 1006
 #define ID_BOTAO_CNT 1007
 #define ID_BOTAO_INV 1008
+#define ID_CX_RMV 1009
 
 Pilha minhaPilha;
 Pilha Invertida;
@@ -64,7 +65,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                     "EDIT", "",
                     WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
                     150, 260, 150, 40,
-                    hwnd, (HMENU)ID_CX_TXT, NULL, NULL
+                    hwnd, (HMENU)ID_CX_RMV, NULL, NULL
 
                      );
       CreateWindow(
@@ -106,7 +107,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
         case ID_BOTAO_REMV:
             char naosei[256];
-            GetDlgItemText(hwnd, ID_CX_TXT, naosei, sizeof(naosei));
+            GetDlgItemText(hwnd, ID_CX_RMV, naosei, sizeof(naosei));
             if (naosei[0] != '\0'){
                 int valor = atoi(naosei);
                 remv(&minhaPilha, valor);
@@ -115,7 +116,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             }
         break;
         case ID_BOTAO_CNT:
-            contarelementos(&minhaPilha);
+            system("cls");
+            int contagem;
+            contagem = contarelementos(&minhaPilha);
+            printf("\n %d", contagem);
         break;
         case ID_BOTAO_INV:
             inverterpilha(&minhaPilha);
@@ -193,5 +197,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     }
     return Msg.wParam;
 }
-
 
