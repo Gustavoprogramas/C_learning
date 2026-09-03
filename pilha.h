@@ -1,15 +1,15 @@
 #ifndef PILHA_H_INCLUDED
 #define PILHA_H_INCLUDED
 
-/* FUN��ES DE MANIPULA��O DE PILHA
+/* FUNÇÕES DE MANIPULAÇÃO DE PILHA
 
 Pilha* CriaPilha ()               CRIA A PILHA
 
-No* ins_ini (No* t, int a)  s      AUXILIAR DA INSER��O
+No* ins_ini (No* t, int a)  s      AUXILIAR DA INSERÇÃO
 
-void push (Pilha* p, int v)  s     INSER��O
+void push (Pilha* p, int v)  s     INSERÇÃO
 
-No* ret_ini (No* l)    s           AUXILIAR DA REMO��O
+No* ret_ini (No* l)    s           AUXILIAR DA REMOÇÃO
 
 int pop (Pilha* p)    s             REMOVE RETORNANDO O VALOR QUE FOI REMOVIDO
 
@@ -17,7 +17,7 @@ Pilha* liberaPilha (Pilha* p)  s    LIBERA A PILHA (CONSTRUIR)
 
 void imprime (Pilha* p)  s   	   IMPRIMA A PILHA (CONSTRUIR)
 
-int vaziaPilha(Pilha *p) s	   VERIFICA SE A PILHA EST� VAZIA, RETORNA 1 (CONSTRUIR)
+int vaziaPilha(Pilha *p) s	   VERIFICA SE A PILHA ESTÁ VAZIA, RETORNA 1 (CONSTRUIR)
 
 */
 
@@ -79,7 +79,7 @@ int pop (Pilha *p)
     if (vaziaPilha(p))
     {
         printf("\n\n\t==> Pilha VAZIA, IMPOSSIVEL CONTINUAR.\b\n");
-        exit(1); /* aborta programa */
+        exit(1); 
     }
     v = p->Topo->info;
     p->Topo = ret_ini(p->Topo);
@@ -90,7 +90,7 @@ int pop (Pilha *p)
 
 
 
-Pilha* liberaPilha (Pilha* p) {
+void liberaPilha (Pilha* p) {
     No *l = p->Topo;
     No *aux;
     while(l!=NULL) {
@@ -98,8 +98,6 @@ Pilha* liberaPilha (Pilha* p) {
         free(l);
         l = aux;
     }
-
-
 }
 
 void imprime (Pilha* p)  {
@@ -114,13 +112,14 @@ void imprime (Pilha* p)  {
 
 }
 
-void contarelementos (Pilha *p) {
+int contarelementos (Pilha *p) {
     int cont = 0;
     No *t = p->Topo;
     while (t!=NULL) {
     cont++;
     t=t->prox;
     }
+    return cont;
 
 
 
@@ -145,7 +144,7 @@ void inverterpilha (Pilha *p) {
 void remv(Pilha *p, int valor) {
     No* aux = NULL;
     No *t = p->Topo;
-    while (t->info!=valor && t->info!=NULL){
+    while (t->info != valor && t != NULL){
         aux = t;
         t=t->prox;
     }
