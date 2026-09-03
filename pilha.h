@@ -121,7 +121,12 @@ void contarelementos (Pilha *p) {
     cont++;
     t=t->prox;
     }
-Pilha* inverterpilha (Pilha *p) {
+
+
+
+
+}
+void inverterpilha (Pilha *p) {
     if (p == NULL || p->Topo == NULL){
         exit(1);
     }
@@ -137,7 +142,7 @@ Pilha* inverterpilha (Pilha *p) {
     p->Topo = aux;
 }
 
-void Removervalor(Pilha *p, int valor) {
+void remv(Pilha *p, int valor) {
     No* aux = NULL;
     No *t = p->Topo;
     while (t->info!=valor && t->info!=NULL){
@@ -158,10 +163,6 @@ void Removervalor(Pilha *p, int valor) {
 
 
 }
-
-}
-
-
 
 
 
