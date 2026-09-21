@@ -20,17 +20,14 @@ void auxinsere(Pilha *p, int v){
 }
 int push (Pilha *p, int v) {
   No *Aux = (No*) malloc (sizeof(No));
-    if (p -> inicio == NULL) {
-            Aux = p->inicio;
-        Aux->info = v;
-    }
+
         auxinsere(p, v);
 
 
  return 1;
 }
 int pop (Pilha *p) {
-  if (p->inicio = NULL){
+  if (p->inicio == NULL){
     printf("Pilha vazia burrao.\n");
   }
 
@@ -52,21 +49,24 @@ void inverterpilha (Pilha *p) {
     }else
     while (p->inicio!=NULL){
         aux = pop(p);
-        i++;
+
         arry[i] = aux;
+        i++;
 
     }for (int j=0; j<i; j++){
         push (p, arry[j]);
     }
+
+    //push(p, arry[i]);
 
 }
 
 
 void print(Pilha *p){
     No* aux = p->inicio;
-    printf("cu");
+
     while (aux!=NULL){
-            printf("cu2");
+
         printf("\n%d", aux->info);
         aux = aux->prox;
     }
@@ -82,7 +82,9 @@ int main() {
     push (p, 1);
     push (p, 2);
     push (p, 3);
+    printf("\npilha normau\n");
     print(p);
     inverterpilha(p);
+    printf("\npilha coisada");
     print(p);
 }
